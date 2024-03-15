@@ -41,12 +41,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.calinac.R
+import com.example.calinac.ui.component.Footer
+import com.example.calinac.ui.component.Header
 import com.example.calinac.ui.theme.CaliNacTheme
 
 @Composable
 fun Account() {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
@@ -64,75 +68,284 @@ fun Account() {
             modifier = Modifier
                 .fillMaxWidth()
         )
-        Card (
-            colors = CardDefaults.cardColors(
-                containerColor = colorResource(id = R.color.secondary)
-            )
+        Coordonees()
+        Banque()
+        Contacts()
+    }
+}
+@Composable
+private fun Coordonees() {
+    Card (
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.secondary)
+        )
+    ) {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Column (
+
+            Row (
                 modifier = Modifier
                     .fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                Icon(
+                    Icons.Outlined.Menu,
+                    contentDescription = "Modifier",
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(10.dp)
+                        .alpha(0f)
+                )
+                Text(
+                    text = "Mes coordonnées",
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                )
+                Icon(
+                    Icons.Outlined.Edit,
+                    contentDescription = "Modifier",
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(10.dp)
+                )
+            }
+            Divider(
+                thickness = 2.dp,
+                color = colorResource(id = R.color.primary),
+                modifier = Modifier
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "Nom d'utilisateur :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            Row {
+                Text(
+                    text = "Adresse mail :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            DashedDivider(
+                color = Color.Black,
+                thickness = 2.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "Nom :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            Row {
+                Text(
+                    text = "Prénom :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            Row {
+                Text(
+                    text = "Numéro :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+        }
+    }
+}
 
-                Row (
+@Composable
+private fun Banque() {
+    Card (
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.secondary)
+        )
+    ) {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Icon(
+                    Icons.Outlined.Menu,
+                    contentDescription = "Modifier",
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Icon(
-                        Icons.Outlined.Menu,
-                        contentDescription = "Modifier",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .padding(10.dp)
-                            .alpha(0f)
-                    )
-                    Text(
-                        text = "Mes coordonnées",
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                    )
-                    Icon(
-                        Icons.Outlined.Edit,
-                        contentDescription = "Modifier",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .padding(10.dp)
-                    )
-                }
-                Divider(
-                    thickness = 2.dp,
-                    color = colorResource(id = R.color.primary),
-                    modifier = Modifier
-                        .padding(horizontal = 5.dp)
+                        .size(50.dp)
+                        .padding(10.dp)
+                        .alpha(0f)
                 )
-                Row {
-                    Text(
-                        text = "Nom d'utilisateur :",
-                        fontSize = 14.sp,
-                        modifier = Modifier
-                            .padding(start = 5.dp)
-                    )
-                    /* TODO */
-                }
-                Row {
-                    Text(
-                        text = "Adresse mail :",
-                        fontSize = 14.sp,
-                        modifier = Modifier
-                            .padding(start = 5.dp)
-                    )
-                    /* TODO */
-                }
-                DashedDivider(
-                    color = Color.Black,
-                    thickness = 2.dp,
+                Text(
+                    text = "Informations bancaires",
+                    fontSize = 20.sp,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 5.dp)
                 )
+                Icon(
+                    Icons.Outlined.Edit,
+                    contentDescription = "Modifier",
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(10.dp)
+                )
+            }
+            Divider(
+                thickness = 2.dp,
+                color = colorResource(id = R.color.primary),
+                modifier = Modifier
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "RIB : ",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            Row {
+                Text(
+                    text = "Banque :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+        }
+    }
+}
+
+@Composable
+private fun Contacts() {
+    Card (
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.secondary)
+        )
+    ) {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Icon(
+                    Icons.Outlined.Menu,
+                    contentDescription = "Modifier",
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(10.dp)
+                        .alpha(0f)
+                )
+                Text(
+                    text = "Mes Contacts",
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                )
+                Icon(
+                    Icons.Outlined.Edit,
+                    contentDescription = "Modifier",
+                    modifier = Modifier
+                        .size(50.dp)
+                        .padding(10.dp)
+                )
+            }
+            Divider(
+                thickness = 2.dp,
+                color = colorResource(id = R.color.primary),
+                modifier = Modifier
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "Référent Animal :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            DashedDivider(
+                color = Color.Black,
+                thickness = 2.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "Référent Cali'Nac",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            DashedDivider(
+                color = Color.Black,
+                thickness = 2.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "Cabinet vétérinaire :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
+            }
+            DashedDivider(
+                color = Color.Black,
+                thickness = 2.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+                Text(
+                    text = "Urgence :",
+                    fontSize = 14.sp,
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                /* TODO */
             }
         }
     }
@@ -161,7 +374,7 @@ fun DashedDivider(
     thickness: Dp,
     color: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     phase: Float = 10f,
-    intervals: FloatArray = floatArrayOf(10f, 10f),
+    intervals: FloatArray = floatArrayOf(20f, 20f),
     modifier: Modifier
 ) {
     Canvas(
