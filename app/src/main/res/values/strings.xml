@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CaliNac</string>
+    <string name="footer_contact_text">Une question ? Contactez Nous !</string>
 </resources>
