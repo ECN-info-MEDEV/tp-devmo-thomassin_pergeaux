@@ -2,4 +2,9 @@
     <string name="app_name">CaliNac</string>
     <string name="footer_contact_text">Une question ? Contactez Nous !</string>
     <string name="AssoName">Cali\'Nac</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="mail">Adresse e-mail</string>
+    <string name="name">Nom</string>
+    <string name="surname">Prénom</string>
+    <string name="number">Numéro</string>
 </resources>
