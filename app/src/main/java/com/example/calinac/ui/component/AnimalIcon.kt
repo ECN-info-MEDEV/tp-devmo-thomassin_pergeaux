@@ -26,11 +26,11 @@ import com.example.calinac.ui.theme.CaliNacTheme
 fun AnimalIcon(
     name: String,
     picture: Int,
-    color: Int
+    bgColor: Int = R.color.secondary
 ){
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(id = R.color.secondary)
+            containerColor = colorResource(id = bgColor)
         ),
         modifier = Modifier
             .padding(
@@ -77,7 +77,7 @@ fun AnimalIcon(
 @Composable
 fun AnimalIconPreview(){
     CaliNacTheme {
-        AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , color = R.color.secondary)
+        AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
     }
 }
 

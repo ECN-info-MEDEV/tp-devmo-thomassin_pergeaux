@@ -109,7 +109,7 @@ fun Adopt(){
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
         ) {
-            AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , color = R.color.secondary)
+            AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
         }
     }
 }
