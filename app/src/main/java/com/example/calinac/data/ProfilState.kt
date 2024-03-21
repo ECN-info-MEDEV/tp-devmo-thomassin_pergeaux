@@ -3,14 +3,14 @@ package com.example.calinac.data
 data class ProfilState(
 
     // Infos
-    val username: String = "",
-    val email: String = "",
-    val name: String = "",
-    val surName: String = "",
-    val phoneNumber: String = "",
+    val username: String = "SpoutGOAT",
+    val email: String = "spout.goat@ecn.fr",
+    val name: String = "Pergeaux",
+    val surName: String = "Numa",
+    val phoneNumber: String = "+33 6 12 34 56 78",
 
     // Bank infos
     val rib: String = "",
-    val bank: String = "",
+    val bank: String = "Société Générale",
 
 )

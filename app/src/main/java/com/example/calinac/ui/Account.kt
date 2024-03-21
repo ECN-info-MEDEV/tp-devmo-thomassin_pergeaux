@@ -52,12 +52,15 @@ import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import androidx.compose.ui.zIndex
 import com.example.calinac.R
+import com.example.calinac.data.ProfilState
 import com.example.calinac.ui.component.Footer
 import com.example.calinac.ui.component.Header
 import com.example.calinac.ui.theme.CaliNacTheme
 
 @Composable
-fun Account() {
+fun Account(
+    state : ProfilState
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -80,14 +83,26 @@ fun Account() {
             modifier = Modifier
                 .fillMaxWidth()
         )
-        Coordonees()
+        Coordonees(
+            state.username,
+            state.email,
+            state.name,
+            state.surName,
+            state.phoneNumber
+        )
         Banque()
         Contacts()
         Animaux()
     }
 }
 @Composable
-private fun Coordonees() {
+private fun Coordonees(
+    username: String = "",
+    email: String = "",
+    name: String = "",
+    surname: String = "",
+    phone: String = "",
+) {
     Card (
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.secondary)
@@ -140,7 +155,7 @@ private fun Coordonees() {
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(text = username)
             }
             Row {
                 Text(
