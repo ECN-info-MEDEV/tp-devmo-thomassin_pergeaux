@@ -44,6 +44,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.calinac.ui.Account
 import com.example.calinac.ui.Homepage
 import com.example.calinac.ui.theme.CaliNacTheme
 import com.example.calinac.ui.component.Header
@@ -72,7 +73,10 @@ fun CaliNacApp(
     navController: NavHostController = rememberNavController()
 ){
     Scaffold(
-        topBar = { Header() },
+        topBar = { Header(
+            goToHome = { navController.navigate( CaliNacScreen.Home.name ) },
+            goToAccount = { navController.navigate(CaliNacScreen.Account.name) },
+        )},
         bottomBar = { Footer() }
     ) {innerPadding ->
 
@@ -83,8 +87,11 @@ fun CaliNacApp(
         ){
             composable(route = CaliNacScreen.Home.name) {
                 Homepage()
-
             }
+            composable(route = CaliNacScreen.Account.name){
+                Account()
+            }
+
         }
 
     }
@@ -95,7 +102,7 @@ fun CaliNacApp(
 @Composable
 fun HeaderPreview() {
     CaliNacTheme {
-        Header()
+        Header({})
     }
 }
 

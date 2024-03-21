@@ -1,7 +1,9 @@
 package com.example.calinac.ui.component
 
+import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +24,10 @@ import androidx.compose.ui.unit.dp
 import com.example.calinac.R
 
 @Composable
-fun Header() {
+fun Header(
+    goToHome : () -> Unit = {},
+    goToAccount: () -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .height(50.dp)
@@ -39,15 +45,26 @@ fun Header() {
                 .padding(10.dp)
         )
         Image(
+            modifier = Modifier
+                .clickable(
+                    onClick = goToHome
+                ),
             painter = painterResource(R.drawable.logo),
             contentDescription = "Logo",
         )
-        Icon(
-            Icons.Outlined.AccountCircle,
-            contentDescription = "Account",
+        IconButton(
+            onClick = goToAccount,
             modifier = Modifier
                 .size(60.dp)
                 .padding(10.dp)
-        )
+        ) {
+            Icon(
+                Icons.Outlined.AccountCircle,
+                contentDescription = "Account",
+                modifier = Modifier
+                    .size(50.dp)
+            )
+        }
+
     }
 }
