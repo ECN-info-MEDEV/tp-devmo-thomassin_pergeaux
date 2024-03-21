@@ -9,6 +9,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -65,6 +67,7 @@ import androidx.compose.ui.window.PopupProperties
 import androidx.compose.ui.zIndex
 import com.example.calinac.R
 import com.example.calinac.data.ProfilState
+import com.example.calinac.ui.component.AnimalIcon
 import com.example.calinac.ui.component.Footer
 import com.example.calinac.ui.component.Header
 import com.example.calinac.ui.theme.CaliNacTheme
@@ -115,6 +118,10 @@ private fun Coordonees(
     surname: String = "",
     phone: String = "",
 ) {
+    var showPopup by remember {
+        mutableStateOf(false)
+    }
+
     Card (
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.secondary)
@@ -228,7 +235,7 @@ private fun Coordonees(
                             imeAction = ImeAction.Done
                         ),
                         value = username,
-                        onValueChanged = { username = it },
+                        onValueChanged = { },
                         modifier = Modifier
                             .padding(bottom = 32.dp)
                             .fillMaxWidth()
@@ -239,8 +246,8 @@ private fun Coordonees(
                             keyboardType = KeyboardType.Text,
                             imeAction = ImeAction.Done
                         ),
-                        value = mail,
-                        onValueChanged = { mail = it },
+                        value = email,
+                        onValueChanged = { },
                         modifier = Modifier
                             .padding(bottom = 32.dp)
                             .fillMaxWidth()
@@ -252,7 +259,7 @@ private fun Coordonees(
                             imeAction = ImeAction.Done
                         ),
                         value = name,
-                        onValueChanged = { name = it },
+                        onValueChanged = { },
                         modifier = Modifier
                             .padding(bottom = 32.dp)
                             .fillMaxWidth()
@@ -264,7 +271,7 @@ private fun Coordonees(
                             imeAction = ImeAction.Done
                         ),
                         value = surname,
-                        onValueChanged = { surname = it },
+                        onValueChanged = { },
                         modifier = Modifier
                             .padding(bottom = 32.dp)
                             .fillMaxWidth()
@@ -275,8 +282,8 @@ private fun Coordonees(
                             keyboardType = KeyboardType.Text,
                             imeAction = ImeAction.Done
                         ),
-                        value = number,
-                        onValueChanged = { number = it },
+                        value = phone,
+                        onValueChanged = { },
                         modifier = Modifier
                             .padding(bottom = 32.dp)
                             .fillMaxWidth()
@@ -462,17 +469,20 @@ private fun Contacts() {
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun Animaux() {
     Card (
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.secondary)
-        )
+        ),
+
     ) {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Text(
@@ -488,16 +498,18 @@ private fun Animaux() {
                 modifier = Modifier
                     .padding(horizontal = 5.dp)
             )
-            Row {
-
-            }
-            Row {
-
-            }
-            Row {
-
-            }
-            Row {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                FlowRow(
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.primary)
+                    AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.primary)
+                    AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.primary)
+                }
 
             }
         }
