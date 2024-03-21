@@ -2,8 +2,12 @@ package com.example.calinac.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -26,6 +30,7 @@ import com.example.calinac.ui.component.AnimalIcon
 import com.example.calinac.ui.theme.CaliNacTheme
 import org.w3c.dom.Text
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun Adopt(){
     Column(
@@ -33,7 +38,7 @@ fun Adopt(){
             .fillMaxWidth()
             .padding(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Text(
             text = "Adopter un animal",
@@ -106,10 +111,22 @@ fun Adopt(){
                 .wrapContentWidth(align = Alignment.CenterHorizontally)
         )
         Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
+                .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+            FlowRow(
+                modifier = Modifier.padding(8.dp)
+            ) {
+                AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+                AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+                AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+                AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+                AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+                AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.secondary)
+            }
+
         }
     }
 }
