@@ -39,7 +39,7 @@ fun AnimalIcon(
                 bottom = 10.dp,
                 top = 10.dp
             )
-            .width(100.dp)
+            .width(120.dp)
     ) {
         Column {
             Row(
