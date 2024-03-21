@@ -30,7 +30,7 @@ fun AnimalIcon(
 ){
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(id = color)
+            containerColor = colorResource(id = R.color.secondary)
         ),
         modifier = Modifier
             .padding(
