@@ -32,6 +32,7 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 @Composable
 fun Homepage(
     modifier: Modifier = Modifier,
+    goToAdopt: () -> Unit = {}
 ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -103,7 +104,7 @@ fun Homepage(
                         )
                 )
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = goToAdopt,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(id = R.color.primary),
                         contentColor = colorResource(id = R.color.white)
