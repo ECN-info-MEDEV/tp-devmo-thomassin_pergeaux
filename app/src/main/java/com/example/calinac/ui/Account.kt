@@ -169,23 +169,39 @@ private fun Coordonees(
                 modifier = Modifier
                     .padding(horizontal = 5.dp)
             )
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Nom d'utilisateur :",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                Text(text = username)
+                Text(
+                    text = username,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
             }
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Adresse mail :",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = email,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
             }
             DashedDivider(
                 color = Color.Black,
@@ -194,103 +210,156 @@ private fun Coordonees(
                     .fillMaxWidth()
                     .padding(horizontal = 5.dp)
             )
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Nom :",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = name,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
             }
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Prénom :",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = surname,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
             }
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Numéro :",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = phone,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
             }
         }
-        PopupBox(popupWidth = 350F,
-            popupHeight = 500F,
+        PopupBox(popupWidth = 150.dp,
+            popupHeight = 500.dp,
             showPopup = showPopup,
             onClickOutside = {showPopup = false},
             content = {
-                Column {
-                    EditNumberField(
-                        label = R.string.username,
-                        keyboardOptions = KeyboardOptions.Default.copy(
-                            keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Done
-                        ),
-                        value = username,
-                        onValueChanged = { },
-                        modifier = Modifier
-                            .padding(bottom = 32.dp)
-                            .fillMaxWidth()
-                    )
-                    EditNumberField(
-                        label = R.string.mail,
-                        keyboardOptions = KeyboardOptions.Default.copy(
-                            keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Done
-                        ),
-                        value = email,
-                        onValueChanged = { },
-                        modifier = Modifier
-                            .padding(bottom = 32.dp)
-                            .fillMaxWidth()
-                    )
-                    EditNumberField(
-                        label = R.string.name,
-                        keyboardOptions = KeyboardOptions.Default.copy(
-                            keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Done
-                        ),
-                        value = name,
-                        onValueChanged = { },
-                        modifier = Modifier
-                            .padding(bottom = 32.dp)
-                            .fillMaxWidth()
-                    )
-                    EditNumberField(
-                        label = R.string.surname,
-                        keyboardOptions = KeyboardOptions.Default.copy(
-                            keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Done
-                        ),
-                        value = surname,
-                        onValueChanged = { },
-                        modifier = Modifier
-                            .padding(bottom = 32.dp)
-                            .fillMaxWidth()
-                    )
-                    EditNumberField(
-                        label = R.string.number,
-                        keyboardOptions = KeyboardOptions.Default.copy(
-                            keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Done
-                        ),
-                        value = phone,
-                        onValueChanged = { },
-                        modifier = Modifier
-                            .padding(bottom = 32.dp)
-                            .fillMaxWidth()
-                    )
-                }
+                EditCoordonnes(
+                    username,
+                    email,
+                    name,
+                    surname,
+                    phone
+                )
+
             }
         )
+    }
+}
+
+@Composable
+fun EditCoordonnes(
+    username: String = "",
+    email: String = "",
+    name: String = "",
+    surname: String = "",
+    phone: String = "",
+){
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.secondary)
+        ),
+        modifier = Modifier
+            .padding(16.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+        ) {
+            EditNumberField(
+                label = R.string.username,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = username,
+                onValueChanged = { },
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            EditNumberField(
+                label = R.string.mail,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = email,
+                onValueChanged = { },
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            EditNumberField(
+                label = R.string.name,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = name,
+                onValueChanged = { },
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            EditNumberField(
+                label = R.string.surname,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = surname,
+                onValueChanged = { },
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            EditNumberField(
+                label = R.string.number,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = phone,
+                onValueChanged = { },
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+        }
     }
 }
 
@@ -543,6 +612,14 @@ fun CoordonneesPreview(){
 
 @Preview(showBackground = true)
 @Composable
+fun EditCoordonneesPreview(){
+    CaliNacTheme {
+        EditCoordonnes()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
 fun BanquesPreview(){
     CaliNacTheme {
         Banque()
@@ -604,8 +681,8 @@ fun DashedDivider(
 
 @Composable
 fun PopupBox(
-    popupWidth: Float,
-    popupHeight:Float,
+    popupWidth: Dp,
+    popupHeight:Dp,
     showPopup: Boolean,
     onClickOutside: () -> Unit, content: @Composable() () -> Unit
 ) {
@@ -613,11 +690,10 @@ fun PopupBox(
         // full screen background
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .background(Color.Blue.copy(alpha = 0.5F))
                 .zIndex(50F)
-                .wrapContentWidth()
                 .clip(RoundedCornerShape(5.dp)),
+
             contentAlignment = Alignment.Center
         ) {
             // popup
@@ -631,9 +707,8 @@ fun PopupBox(
             ) {
                 Box(
                     Modifier
-                        .width(popupWidth.dp)
-                        .height(popupHeight.dp)
-                        .background(colorResource(id = R.color.primary)),
+                        .background(colorResource(id = R.color.primary))
+                        .padding(16.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     content()
@@ -647,8 +722,8 @@ fun PopupBox(
 @Composable
 private fun PopupBoxPreview(){
     PopupBox(
-        popupWidth = 300F,
-        popupHeight = 300F,
+        popupWidth = 150.dp,
+        popupHeight = 500.dp,
         showPopup = true,
         onClickOutside = { /*TODO*/ }) {
 
