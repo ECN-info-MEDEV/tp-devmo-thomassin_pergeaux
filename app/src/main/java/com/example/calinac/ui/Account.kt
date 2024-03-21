@@ -3,11 +3,15 @@ package com.example.calinac.ui
 import android.accounts.Account
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,6 +19,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Menu
@@ -29,6 +36,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -40,6 +48,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
+import androidx.compose.ui.zIndex
 import com.example.calinac.R
 import com.example.calinac.ui.component.Footer
 import com.example.calinac.ui.component.Header
@@ -50,7 +61,8 @@ fun Account() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp),
+            .padding(10.dp)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
@@ -71,6 +83,7 @@ fun Account() {
         Coordonees()
         Banque()
         Contacts()
+        Animaux()
     }
 }
 @Composable
@@ -350,13 +363,80 @@ private fun Contacts() {
         }
     }
 }
-@Preview(showBackground = true)
+
 @Composable
-fun AccountPreview(){
-    CaliNacTheme {
-        Account()
+private fun Animaux() {
+    Card (
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.secondary)
+        )
+    ) {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text(
+                    text = "Mes Animaux",
+                    fontSize = 20.sp,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentWidth()
+                )
+            Divider(
+                thickness = 2.dp,
+                color = colorResource(id = R.color.primary),
+                modifier = Modifier
+                    .padding(horizontal = 5.dp)
+            )
+            Row {
+
+            }
+            Row {
+
+            }
+            Row {
+
+            }
+            Row {
+
+            }
+        }
     }
 }
+@Preview(showBackground = true)
+@Composable
+fun CoordonneesPreview(){
+    CaliNacTheme {
+        Coordonees()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BanquesPreview(){
+    CaliNacTheme {
+        Banque()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ContactsPreview(){
+    CaliNacTheme {
+        Contacts()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AnimauxPreview(){
+    CaliNacTheme {
+        Animaux()
+    }
+}
+
 @Preview (showBackground = true)
 @Composable
 private fun DashedDividerPreview() {
@@ -391,5 +471,57 @@ fun DashedDivider(
                 )
             )
         )
+    }
+}
+
+@Composable
+fun PopupBox(
+    popupWidth: Float,
+    popupHeight:Float,
+    showPopup: Boolean,
+    onClickOutside: () -> Unit, content: @Composable() () -> Unit
+) {
+    if (showPopup) {
+        // full screen background
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+                .zIndex(10F),
+            contentAlignment = Alignment.Center
+        ) {
+            // popup
+            Popup(
+                alignment = Alignment.Center,
+                properties = PopupProperties(
+                    excludeFromSystemGesture = true,
+                ),
+                // to dismiss on click outside
+                onDismissRequest = { onClickOutside() }
+            ) {
+                Box(
+                    Modifier
+                        .width(popupWidth.dp)
+                        .height(popupHeight.dp)
+                        .background(Color.White)
+                        .clip(RoundedCornerShape(4.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    content()
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PopupBoxPreview(){
+    PopupBox(
+        popupWidth = 300F,
+        popupHeight = 300F,
+        showPopup = true,
+        onClickOutside = { /*TODO*/ }) {
+
     }
 }
