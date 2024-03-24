@@ -76,7 +76,8 @@ import com.example.calinac.ui.theme.CaliNacTheme
 
 @Composable
 fun Account(
-    state : ProfilState
+    state : ProfilState,
+    profilModel: AccountViewModel
 ) {
     Column(
         modifier = Modifier
@@ -105,7 +106,8 @@ fun Account(
             state.email,
             state.name,
             state.surName,
-            state.phoneNumber
+            state.phoneNumber,
+            profilModel
         )
         Banque()
         Contacts()
@@ -119,6 +121,7 @@ private fun Coordonees(
     name: String = "",
     surname: String = "",
     phone: String = "",
+    profilModel: AccountViewModel = AccountViewModel()
 ) {
     var showPopup by remember {
         mutableStateOf(false)
@@ -276,7 +279,9 @@ private fun Coordonees(
                 email,
                 name,
                 surname,
-                phone
+                phone,
+                profilModel,
+                onSave = {showPopup = false}
             )
 
         }
@@ -290,6 +295,8 @@ fun EditCoordonnes(
     name: String = "",
     surname: String = "",
     phone: String = "",
+    profilModel: AccountViewModel = AccountViewModel(),
+    onSave: () -> Unit = {}
 ){
 
     var username by remember {
@@ -381,7 +388,13 @@ fun EditCoordonnes(
                     .fillMaxWidth()
             )
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { profilModel.updateCoordonnees(
+                    username = username,
+                    email = email,
+                    name = name,
+                    surname = surname,
+                    phone = phone
+                ); onSave()},
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
@@ -390,6 +403,9 @@ fun EditCoordonnes(
         }
     }
 }
+
+
+
 
 @Composable
 private fun Banque() {

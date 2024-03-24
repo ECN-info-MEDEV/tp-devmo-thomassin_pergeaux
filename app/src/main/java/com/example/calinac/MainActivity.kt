@@ -68,7 +68,8 @@ fun CaliNacApp(
             }
             composable(route = CaliNacScreen.Account.name){
                 Account(
-                    state = uiState
+                    state = uiState,
+                    profilModel = viewModel
                 )
             }
             composable(route = CaliNacScreen.Adopt.name){
