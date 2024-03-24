@@ -29,6 +29,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -62,6 +63,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import androidx.compose.ui.zIndex
@@ -262,22 +264,23 @@ private fun Coordonees(
                 )
             }
         }
-        PopupBox(popupWidth = 150.dp,
-            popupHeight = 500.dp,
-            showPopup = showPopup,
-            onClickOutside = {showPopup = false},
-            content = {
-                EditCoordonnes(
-                    username,
-                    email,
-                    name,
-                    surname,
-                    phone
-                )
 
-            }
-        )
     }
+    PopupBox(popupWidth = 150.dp,
+        popupHeight = 500.dp,
+        showPopup = showPopup,
+        onClickOutside = {showPopup = false},
+        content = {
+            EditCoordonnes(
+                username,
+                email,
+                name,
+                surname,
+                phone
+            )
+
+        }
+    )
 }
 
 @Composable
@@ -288,12 +291,30 @@ fun EditCoordonnes(
     surname: String = "",
     phone: String = "",
 ){
+
+    var username by remember {
+        mutableStateOf(username)
+    }
+    var email by remember {
+        mutableStateOf(email)
+    }
+    var name by remember {
+        mutableStateOf(name)
+    }
+    var surname by remember {
+        mutableStateOf(surname)
+    }
+    var phone by remember {
+        mutableStateOf(phone)
+    }
+
     Card(
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.secondary)
         ),
         modifier = Modifier
             .padding(16.dp)
+            .alpha(1f)
     ) {
         Column(
             modifier = Modifier
@@ -306,7 +327,7 @@ fun EditCoordonnes(
                     imeAction = ImeAction.Done
                 ),
                 value = username,
-                onValueChanged = { },
+                onValueChanged = { username = it},
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
@@ -318,7 +339,7 @@ fun EditCoordonnes(
                     imeAction = ImeAction.Done
                 ),
                 value = email,
-                onValueChanged = { },
+                onValueChanged = { email = it },
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
@@ -330,7 +351,7 @@ fun EditCoordonnes(
                     imeAction = ImeAction.Done
                 ),
                 value = name,
-                onValueChanged = { },
+                onValueChanged = { name = it },
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
@@ -342,7 +363,7 @@ fun EditCoordonnes(
                     imeAction = ImeAction.Done
                 ),
                 value = surname,
-                onValueChanged = { },
+                onValueChanged = { surname = it },
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
@@ -354,11 +375,18 @@ fun EditCoordonnes(
                     imeAction = ImeAction.Done
                 ),
                 value = phone,
-                onValueChanged = { },
+                onValueChanged = { phone = it },
                 modifier = Modifier
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
             )
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(text = "Enregistrer")
+            }
         }
     }
 }
@@ -688,31 +716,13 @@ fun PopupBox(
 ) {
     if (showPopup) {
         // full screen background
-        Box(
-            modifier = Modifier
-                .background(Color.Blue.copy(alpha = 0.5F))
-                .zIndex(50F)
-                .clip(RoundedCornerShape(5.dp)),
-
-            contentAlignment = Alignment.Center
-        ) {
-            // popup
-            Popup(
-                alignment = Alignment.Center,
-                properties = PopupProperties(
-                    excludeFromSystemGesture = true,
-                ),
-                // to dismiss on click outside
-                onDismissRequest = { onClickOutside() }
+        Dialog(
+            onDismissRequest = { onClickOutside() })
+        {
+            Box(
+                contentAlignment = Alignment.Center
             ) {
-                Box(
-                    Modifier
-                        .background(colorResource(id = R.color.primary))
-                        .padding(16.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    content()
-                }
+                content()
             }
         }
     }
