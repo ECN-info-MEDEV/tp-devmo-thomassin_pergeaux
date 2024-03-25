@@ -98,7 +98,7 @@ fun Account(
 
         )
         Text(
-            text = "Nom d'utilisateur",
+            text = state.username,
             textAlign = TextAlign.Center,
             fontSize = 25.sp,
             modifier = Modifier
@@ -162,6 +162,7 @@ private fun Coordonees(
                 )
                 Text(
                     text = "Mes coordonnées",
+                    fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     modifier = Modifier
                 )
@@ -460,6 +461,7 @@ private fun Banque(
                 )
                 Text(
                     text = "Informations bancaires",
+                    fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     modifier = Modifier
                 )
@@ -621,27 +623,13 @@ private fun Contacts() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    Icons.Outlined.Menu,
-                    contentDescription = "Modifier",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .padding(10.dp)
-                        .alpha(0f)
-                )
                 Text(
                     text = "Mes Contacts",
+                    fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     modifier = Modifier
-                )
-                Icon(
-                    Icons.Outlined.Edit,
-                    contentDescription = "Modifier",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .padding(10.dp)
                 )
             }
             Divider(
@@ -650,14 +638,42 @@ private fun Contacts() {
                 modifier = Modifier
                     .padding(horizontal = 5.dp)
             )
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Référent Animal :",
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                Text(
+                    text = "Amélie Dupuis",
+                    color = colorResource(id = R.color.primary),
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .width(150.dp)
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "amélie.dupuis@gmail.com",
+                    fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = "06 00 00 00 00",
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .width(150.dp)
+                )
             }
             DashedDivider(
                 color = Color.Black,
@@ -666,14 +682,42 @@ private fun Contacts() {
                     .fillMaxWidth()
                     .padding(horizontal = 5.dp)
             )
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Référent Cali'Nac",
+                    modifier = Modifier
+                        .padding(start = 5.dp)
+                )
+                Text(
+                    text = "Victor dupont",
+                    color = colorResource(id = R.color.primary),
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .width(150.dp)
+                )
+            }
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "victor.dupont@gmail.com",
+                    fontWeight = FontWeight.Bold,
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = "07 00 00 00 00",
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .width(150.dp)
+                )
             }
             DashedDivider(
                 color = Color.Black,
