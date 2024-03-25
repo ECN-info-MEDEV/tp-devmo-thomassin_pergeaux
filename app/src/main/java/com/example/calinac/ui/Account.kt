@@ -87,13 +87,14 @@ fun Account(
             .padding(10.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(32.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
         Image(
-            painter = painterResource(R.drawable.icons8_instagram_96___),
+            painter = painterResource(R.drawable.boy),
             contentDescription = null,
-            modifier = Modifier.width(300.dp)
+            modifier = Modifier
+                .width(250.dp)
+                .padding(top = 15.dp)
 
         )
         Text(
