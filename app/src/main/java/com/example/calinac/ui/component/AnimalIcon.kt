@@ -1,6 +1,7 @@
 package com.example.calinac.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.calinac.R
@@ -26,7 +28,8 @@ import com.example.calinac.ui.theme.CaliNacTheme
 fun AnimalIcon(
     name: String,
     picture: Int,
-    bgColor: Int = R.color.secondary
+    bgColor: Int = R.color.secondary,
+    onClick: () -> Unit = {}
 ){
     Card(
         colors = CardDefaults.cardColors(
@@ -40,6 +43,9 @@ fun AnimalIcon(
                 top = 10.dp
             )
             .width(120.dp)
+            .clickable(
+                onClick = onClick
+            )
     ) {
         Column {
             Row(
@@ -62,10 +68,12 @@ fun AnimalIcon(
 
             Text(
                 text = name,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentWidth()
                     .padding(
+                        top = 4.dp,
                         bottom = 5.dp
                     )
                 )

@@ -69,7 +69,11 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
 import androidx.compose.ui.zIndex
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.calinac.CaliNacScreen
 import com.example.calinac.R
+import com.example.calinac.data.AnimalState
 import com.example.calinac.data.ProfilState
 import com.example.calinac.ui.component.AnimalIcon
 import com.example.calinac.ui.component.Footer
@@ -79,7 +83,9 @@ import com.example.calinac.ui.theme.CaliNacTheme
 @Composable
 fun Account(
     state : ProfilState,
-    profilModel: AccountViewModel
+    animalState: AnimalState,
+    profilModel: AccountViewModel,
+    navController: NavController
 ) {
     Column(
         modifier = Modifier
@@ -118,7 +124,10 @@ fun Account(
             profilModel
         )
         Contacts()
-        Animaux()
+        Animaux(
+            navController,
+            animalState
+        )
     }
 }
 @Composable
@@ -336,7 +345,7 @@ fun EditCoordonnes(
             modifier = Modifier
                 .padding(16.dp)
         ) {
-            EditNumberField(
+            EditStringField(
                 label = R.string.username,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -348,7 +357,7 @@ fun EditCoordonnes(
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
             )
-            EditNumberField(
+            EditStringField(
                 label = R.string.mail,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -360,7 +369,7 @@ fun EditCoordonnes(
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
             )
-            EditNumberField(
+            EditStringField(
                 label = R.string.name,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -372,7 +381,7 @@ fun EditCoordonnes(
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
             )
-            EditNumberField(
+            EditStringField(
                 label = R.string.surname,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -384,7 +393,7 @@ fun EditCoordonnes(
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
             )
-            EditNumberField(
+            EditStringField(
                 label = R.string.number,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -561,7 +570,7 @@ fun EditBanque(
             modifier = Modifier
                 .padding(16.dp)
         ) {
-            EditNumberField(
+            EditStringField(
                 label = R.string.rib,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -573,7 +582,7 @@ fun EditBanque(
                     .padding(bottom = 8.dp)
                     .fillMaxWidth()
             )
-            EditNumberField(
+            EditStringField(
                 label = R.string.banque,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     keyboardType = KeyboardType.Text,
@@ -757,7 +766,10 @@ private fun Contacts() {
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun Animaux() {
+private fun Animaux(
+    navController: NavController,
+    animalState: AnimalState
+) {
     Card (
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.secondary)
@@ -792,9 +804,10 @@ private fun Animaux() {
                 FlowRow(
                     modifier = Modifier.padding(8.dp)
                 ) {
-                    AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.primary)
-                    AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.primary)
-                    AnimalIcon(name = "Snoopy", picture = R.drawable.snoopy , bgColor = R.color.primary)
+                    AnimalIcon(
+                        name = animalState.name, picture = R.drawable.snoopy ,
+                        bgColor = R.color.primary, onClick = {navController.navigate(CaliNacScreen.Animal.name)}
+                    )
                 }
 
             }
@@ -803,7 +816,7 @@ private fun Animaux() {
 }
 
 @Composable
-fun EditNumberField(
+fun EditStringField(
     @StringRes label: Int,
     keyboardOptions: KeyboardOptions,
     value: String,
@@ -855,7 +868,10 @@ fun ContactsPreview(){
 @Composable
 fun AnimauxPreview(){
     CaliNacTheme {
-        Animaux()
+        Animaux(
+            navController = rememberNavController(),
+            animalState = AnimalState()
+        )
     }
 }
 

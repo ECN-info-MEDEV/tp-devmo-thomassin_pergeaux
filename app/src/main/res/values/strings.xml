@@ -9,4 +9,8 @@
     <string name="number">Numéro</string>
     <string name="rib">RIB</string>
     <string name="banque">Banque</string>
+    <string name="poids_kg">Poids (kg)</string>
+    <string name="age_mois">Age (mois)</string>
+    <string name="sexe">Sexe</string>
+    <string name="race">Race</string>
 </resources>
