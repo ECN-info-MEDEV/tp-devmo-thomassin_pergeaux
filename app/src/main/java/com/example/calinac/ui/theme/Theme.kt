@@ -64,8 +64,7 @@ fun CaliNacTheme(
             window.navigationBarColor = Color(0xFF75D6E4).toArgb()
             window.statusBarColor = Color(0xFF75D6E4).toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
-            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = darkTheme
         }
     }
 
