@@ -16,6 +16,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -184,6 +188,10 @@ fun Homepage(
 
 @Composable
 fun Newsletter(){
+    var news_mail by remember {
+        mutableStateOf("")
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -201,9 +209,9 @@ fun Newsletter(){
                 )
         )
         OutlinedTextField(
-            value = "",
+            value = news_mail,
             placeholder = { Text(text = "e.g. email@example.com")},
-            onValueChange = {},
+            onValueChange = {news_mail = it},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
