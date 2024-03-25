@@ -7,4 +7,6 @@
     <string name="name">Nom</string>
     <string name="surname">Prénom</string>
     <string name="number">Numéro</string>
+    <string name="rib">RIB</string>
+    <string name="banque">Banque</string>
 </resources>

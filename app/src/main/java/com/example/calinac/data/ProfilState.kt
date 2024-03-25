@@ -10,7 +10,7 @@ data class ProfilState(
     val phoneNumber: String = "+33 6 12 34 56 78",
 
     // Bank infos
-    val rib: String = "",
+    val rib: String = "1 000 000 000",
     val bank: String = "Société Générale",
 
 )

@@ -19,13 +19,31 @@ class AccountViewModel : ViewModel() {
         surname: String,
         phone: String
     ){
-        Log.d("Update Data","Update Coordonnées" + name)
         _uiState.value = ProfilState(
             username = username,
             email = email,
             name = name,
             surName = surname,
-            phoneNumber = phone
+            phoneNumber = phone,
+            rib =  _uiState.value.rib,
+            bank = _uiState.value.bank
+
+
+        )
+    }
+
+    fun updateBanque(
+        rib: String,
+        banque: String,
+    ){
+        _uiState.value = ProfilState(
+            username = _uiState.value.username,
+            email = _uiState.value.email,
+            name = _uiState.value.name,
+            surName = _uiState.value.surName,
+            phoneNumber = _uiState.value.phoneNumber,
+            rib = rib,
+            bank = banque,
         )
     }
 

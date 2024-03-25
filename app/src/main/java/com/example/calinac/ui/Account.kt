@@ -30,6 +30,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
@@ -56,6 +57,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -109,7 +111,11 @@ fun Account(
             state.phoneNumber,
             profilModel
         )
-        Banque()
+        Banque(
+            state.rib,
+            state.bank,
+            profilModel
+        )
         Contacts()
         Animaux()
     }
@@ -395,10 +401,17 @@ fun EditCoordonnes(
                     surname = surname,
                     phone = phone
                 ); onSave()},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(id = R.color.primary),
+                    contentColor = colorResource(id = R.color.white)
+                ),
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                Text(text = "Enregistrer")
+                Text(
+                    text = "Enregistrer",
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
@@ -407,8 +420,17 @@ fun EditCoordonnes(
 
 
 
+
 @Composable
-private fun Banque() {
+private fun Banque(
+    rib: String = "",
+    banque: String = "",
+    profilModel: AccountViewModel = AccountViewModel()
+) {
+    var showPopup by remember {
+        mutableStateOf(false)
+    }
+
     Card (
         colors = CardDefaults.cardColors(
             containerColor = colorResource(id = R.color.secondary)
@@ -439,13 +461,15 @@ private fun Banque() {
                     fontSize = 20.sp,
                     modifier = Modifier
                 )
-                Icon(
-                    Icons.Outlined.Edit,
-                    contentDescription = "Modifier",
-                    modifier = Modifier
-                        .size(50.dp)
-                        .padding(10.dp)
-                )
+                IconButton(onClick = { showPopup = true }) {
+                    Icon(
+                        Icons.Outlined.Edit,
+                        contentDescription = "Modifier",
+                        modifier = Modifier
+                            .size(50.dp)
+                            .padding(10.dp)
+                    )
+                }
             }
             Divider(
                 thickness = 2.dp,
@@ -453,23 +477,125 @@ private fun Banque() {
                 modifier = Modifier
                     .padding(horizontal = 5.dp)
             )
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "RIB : ",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = rib,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
             }
-            Row {
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
                 Text(
                     text = "Banque :",
                     fontSize = 14.sp,
                     modifier = Modifier
                         .padding(start = 5.dp)
                 )
-                /* TODO */
+                Text(
+                    text = banque,
+                    modifier = Modifier
+                        .width(175.dp)
+                )
+            }
+        }
+    }
+    PopupBox(popupWidth = 150.dp,
+        popupHeight = 500.dp,
+        showPopup = showPopup,
+        onClickOutside = {showPopup = false},
+        content = {
+            EditBanque(
+                rib,
+                banque,
+                profilModel,
+                onSave = {showPopup = false}
+            )
+
+        }
+    )
+}
+
+@Composable
+fun EditBanque(
+    rib: String = "",
+    banque: String = "",
+    profilModel: AccountViewModel = AccountViewModel(),
+    onSave: () -> Unit = {}
+){
+
+    var rib by remember {
+        mutableStateOf(rib)
+    }
+    var banque by remember {
+        mutableStateOf(banque)
+    }
+
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = colorResource(id = R.color.secondary)
+        ),
+        modifier = Modifier
+            .padding(16.dp)
+            .alpha(1f)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+        ) {
+            EditNumberField(
+                label = R.string.rib,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = rib,
+                onValueChanged = { rib = it},
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            EditNumberField(
+                label = R.string.banque,
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Done
+                ),
+                value = banque,
+                onValueChanged = { banque = it },
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            Button(
+                onClick = { profilModel.updateBanque(
+                    rib = rib,
+                    banque = banque,
+                ); onSave()},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(id = R.color.primary),
+                    contentColor = colorResource(id = R.color.white)
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "Enregistrer",
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
