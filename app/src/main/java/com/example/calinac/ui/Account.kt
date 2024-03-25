@@ -165,13 +165,14 @@ private fun Coordonees(
                     fontSize = 20.sp,
                     modifier = Modifier
                 )
-                IconButton(onClick = { showPopup = true }) {
+                IconButton(
+                    onClick = { showPopup = true },
+                    modifier = Modifier
+                        .size(45.dp)
+                ) {
                     Icon(
                         Icons.Outlined.Edit,
                         contentDescription = "Modifier",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .padding(10.dp)
                     )
                 }
             }
@@ -462,13 +463,14 @@ private fun Banque(
                     fontSize = 20.sp,
                     modifier = Modifier
                 )
-                IconButton(onClick = { showPopup = true }) {
+                IconButton(
+                    onClick = { showPopup = true },
+                    modifier = Modifier
+                        .size(45.dp)
+                ) {
                     Icon(
                         Icons.Outlined.Edit,
                         contentDescription = "Modifier",
-                        modifier = Modifier
-                            .size(50.dp)
-                            .padding(10.dp)
                     )
                 }
             }
