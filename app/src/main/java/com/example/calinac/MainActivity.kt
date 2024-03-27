@@ -85,7 +85,8 @@ fun CaliNacApp(
             }
             composable(route = CaliNacScreen.Adopt.name){
                 Adopt(
-                    navController
+                    navController,
+                    animalUiState
                 )
             }
             composable(route = CaliNacScreen.Animal.name){
